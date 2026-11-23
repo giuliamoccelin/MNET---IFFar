@@ -30,9 +30,31 @@ O TCC é fundamentado em pesquisas recentes, como a dissertação de Welber Sant
 
 5. Funcionalidades do Sistema
 
-Dashboard Administrativo: Exibição de indicadores críticos, como o número total de máquinas e tipos de redes controladas.
+Dashboard Administrativo: Exibição de equipamentos por situação, manutenções, custo mensal, qualidade dos dados e total de usuários.
 Gestão de Manutenção: Registro de alterações e reparos realizados nos equipamentos.
-Segurança e Governança: Classificação de ativos por criticidade e alinhamento com boas práticas de governança de TI na administração pública.
+Segurança e Governança: O sistema distingue perfis e restringe ações administrativas. A classificação de ativos por criticidade ainda é uma evolução proposta, não uma funcionalidade implementada.
+
+6. Estrutura de Pastas
+
+O código foi organizado em pastas de acordo com a função de cada arquivo. A página de login e os arquivos de configuração ficam na raiz do projeto, e o acesso ao sistema continua sendo feito por `index.php`.
+
+```
+tcc_inventario/
+├── index.php                  Página de login
+├── config.php                 Configuração padrão (banco, Nmap e redes permitidas)
+├── config.local.example.php   Modelo da configuração de cada computador
+├── admin/                     Páginas do administrador: painel, listagens, cadastros, perfil e escaneamento
+├── usuario/                   Páginas do usuário comum
+├── comum/                     Páginas usadas pelos dois perfis: logout e relatório de manutenção
+├── includes/                  Arquivos reutilizados: conexão, segurança, cabeçalho, menus e painel
+├── assets/css/                Folha de estilo
+├── assets/img/                Imagens e ícones
+├── database/                  Scripts e dump do banco de dados
+└── docs/                      Documentação
+```
+
+Os arquivos de `includes/` são usados por páginas de pastas diferentes. Por isso, os links dos menus e as imagens partem da constante `BASE_URL`, definida em `includes/caminhos.php`, que descobre sozinha o endereço do projeto no servidor. Dessa forma, o sistema funciona em qualquer pasta do servidor web sem configuração adicional.
+
+As instruções atuais de instalação, configuração de rede e testes estão em `docs/INSTALACAO_E_CONFIGURACAO.md`. Antes de publicar dados ou código, remova informações pessoais do dump de demonstração e altere as senhas de teste.
 
 Em suma, o trabalho não busca apenas criar uma lista de equipamentos, mas estabelecer um instrumento estratégico de gestão e segurança, otimizando o tempo da equipe técnica e reduzindo desperdícios institucionais.
-
